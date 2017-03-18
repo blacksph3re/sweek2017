@@ -19,12 +19,6 @@
         templateUrl: 'app/interns/intern.html',
         controller: 'InternController',
         controllerAs: 'interns'
-      })
-      .state('bubbles', {
-        url: '/bubbles',
-        templateUrl: 'app/bubbles/bubbles.html',
-        controller: 'BubblesController',
-        controllerAs: 'ctrl'
       });
 
 

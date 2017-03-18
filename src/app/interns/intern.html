@@ -12,12 +12,13 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<h1 class="header">Explore</h1>
-				<div class="input-group input-addon">
-					<input class="form-control" type="text" ng-change="ctrl.inputChange()" ng-model="ctrl.filter" />
-					<span class="glyphicon glyphicon-search"></span>
+				<div class="input-group">
+					<i class="glyphicon glyphicon-search input-group-addon"></i>
+					<input class="form-control" type="text" ng-change="interns.inputChange()" ng-model="interns.filter" />
 				</div>
+				<button type="button" class="btn btn-default" ng-click="interns.open()">Open Modal</button>
 			</div>
-			<div class="col-lg-3" ng-repeat="row in rows">
+			<div class="col-lg-3" ng-repeat="row in interns.rows">
 				<div ng-repeat="category in row" class="category-chooser">
 					<button type="button" class="btn btn-default">{{ category.name }}</button>
 				</div>
@@ -25,4 +26,3 @@
 		</div>
 	</form>
 </div>
-
