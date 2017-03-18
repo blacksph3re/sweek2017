@@ -12,6 +12,9 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
 // bower:scss
 // endbower
 
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -25,6 +28,23 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
   img.pull-right {
     width: 50px;
   }
+}
+
+.explore {
+	background-color: grey;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+
+}
+
+.explore h1 {
+	color: white;
+}
+
+.explore button {
+	width: 100%;
+	margin-bottom: 10px;
 }
 
 /**
