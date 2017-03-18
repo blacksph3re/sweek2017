@@ -6,35 +6,14 @@
     .controller("InternController", InternController);
 
   /** @ngInject */
-  function InternController($scope) {
+  function InternController($uibModal) {
+
+    var vm = this;
+    var sample_data;
 
     var groupsOrder = ["city", "name", "subfiled", "title"];
     var currentGroup = 0;
     var visualization = null;
-
-    var data = [{
-      "name": "City"
-    }, {
-      "name": "Pay"
-    }, {
-      "name": "Field"
-    }, {
-      "name": "Requirements"
-    }];
-
-    function chunk(arr, size) {
-      var newArr = [];
-      for (var i = 0; i < arr.length; i += size) {
-        newArr.push(arr.slice(i, i + size));
-      }
-      return newArr;
-    }
-
-    $scope.rows = chunk(data, 3);
-
-
-    var vm = this;
-    var sample_data;
 
     vm.inputChange = inputChange;
     vm.filter = "";
@@ -89,5 +68,39 @@
 
     }
 
+    var data = [{
+      "name": "City"
+    }, {
+      "name": "Pay"
+    },{
+      "name": "Field"
+    }, {
+      "name": "Requirements"
+    }];
+
+    function chunk(arr, size) {
+      var newArr = [];
+      for (var i=0; i<arr.length; i+=size) {
+        newArr.push(arr.slice(i, i+size));
+      }
+      return newArr;
+    }
+
+    vm.rows = chunk(data, 3);
+
+
+    vm.open = function() {
+      
+      $uibModal.open({
+        animation: false,
+        ariaLabelledBy: 'modal-title',
+        ariaDescribedBy: 'modal-body',
+        templateUrl: 'app/interns/modal.html',
+        controller: 'ModalController',
+        controllerAs: '$ctrl',
+        size: 'lg',
+        show: false
+      });
+    };
   }
 })();
