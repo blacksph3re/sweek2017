@@ -1,6 +1,10 @@
 <!-- Container for the animated stuff -->
 <div class="row">
-	<img class="img-responsive" src="/assets/images/bubbles.png" />
+	<div class="col-xs-12">
+
+      <div class="bubbles"></div>
+
+    </div>
 </div>
 
 <div class="row explore">
@@ -8,8 +12,8 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<h1 class="header">Explore</h1>
-				<div class="input-group">
-					<input class="form-control" type="text" />
+				<div class="input-group input-addon">
+					<input class="form-control" type="text" ng-change="ctrl.inputChange()" ng-model="ctrl.filter" />
 					<span class="glyphicon glyphicon-search"></span>
 				</div>
 			</div>
