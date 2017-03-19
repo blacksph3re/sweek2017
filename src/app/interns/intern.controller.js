@@ -14,12 +14,13 @@
     var groupsOrder = ["city", "name", "subfiled", "title"];
     var currentGroup = 0;
     var visualization = null;
+    var defaultSort = ["city", "name"];
+    var sort = defaultSort;
 
     vm.inputChange = inputChange;
     vm.resetInput = resetInput;
-    vm.filter = "";
-
-    vm.rows = [];
+    vm.sortFields = ["city", "name", "subfiled", "title"];
+    vm.sort = sortInput;
 
     activate();
 
@@ -28,20 +29,28 @@
         originalData = json;
         currentData = originalData;
         vm.inputChange();
-
-        vm.rows = chunk(originalData, ["city", "name", "subfiled"]);
       });
     }
 
     function inputChange() {
 
-      drawChart(currentData, ["city", "name"]);
+      drawChart(currentData, sort);
+      checkSort();
+    }
+
+    function checkSort() {
+
+      $('.sort-field').removeClass('active');
+
+      $('.sort-' + sort[0]).addClass('active');
+      $('.sort-' + sort[1]).addClass('active');
     }
 
     function resetInput() {
 
       currentData = originalData;
       currentGroup = 0;
+      sort = defaultSort;
       inputChange();
     }
 
@@ -69,6 +78,19 @@
       }
     }
 
+    function sortInput(field) {
+      $('.sort-' + field).addClass('active');
+
+      if (sort.length == 2) {
+        sort = [field];
+      } else {
+        sort.push(field);
+        inputChange();
+      }
+
+      checkSort();
+    }
+
     function chartClick(elem) {
 
       var groupIndex = groupsOrder[currentGroup];
@@ -82,27 +104,6 @@
       drawChart(currentData, [groupsOrder[currentGroup], groupsOrder[currentGroup + 1]]);
 
     }
-
-    function chunk(data, fields) {
-
-      var newArr = {};
-
-      for (var index = 0; index < fields.length; index++) {
-        for (var i = 0; i < data.length; i++) {
-
-          if (newArr[fields[index]] === undefined) {
-            newArr[fields[index]] = [];
-          }
-
-          if (newArr[fields[index]].indexOf(data[i][fields[index]]) < 0) {
-            newArr[fields[index]].push(data[i][fields[index]]);
-          }
-        }
-      }
-
-      return newArr;
-    }
-
 
     vm.open = function () {
 

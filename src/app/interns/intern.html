@@ -12,14 +12,14 @@
 
     <div class="col-sm-12 col-xs-12">
 
-      <h3 class="header">Explore</h3>
+      <h3 class="header">Explore by</h3>
 
       <div class="input-group input-addon">
-        <span ng-repeat="row in interns.rows">
-          <button type="button" class="btn btn-default" ng-repeat="category in row">
-            {{ category }}
+          <button type="button" class="btn btn-default sort-field sort-{{ name }}"
+                  ng-repeat="name in interns.sortFields"
+                  ng-click="interns.sort(name)">
+            {{ name }}
           </button>
-        </span>
       </div>
 
       <div>
