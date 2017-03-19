@@ -6,7 +6,7 @@
     .controller("InternController", InternController);
 
   /** @ngInject */
-  function InternController($uibModal) {
+  function InternController($uibModal, $rootScope) {
 
     var vm = this;
     var originalData, currentData;
@@ -21,6 +21,7 @@
     vm.resetInput = resetInput;
     vm.sortFields = ["city", "name", "subfiled", "title"];
     vm.sort = sortInput;
+    vm.open = openModal;
 
     activate();
 
@@ -59,7 +60,6 @@
 
       if (visualization) {
 
-        console.debug(sortFields);
         visualization.data(data).id(sortFields).draw();
 
       } else {
@@ -102,11 +102,18 @@
         return elem[groupIndex] == groupValue;
       });
 
-      drawChart(currentData, [groupsOrder[currentGroup], groupsOrder[currentGroup + 1]]);
+      if (currentGroup == groupsOrder.length - 1) {
+        currentGroup -= 1;
+        openModal(elem);
+      } else {
+        drawChart(currentData, [groupsOrder[currentGroup], groupsOrder[currentGroup + 1]]);
+      }
 
     }
 
-    vm.open = function () {
+    function openModal(elem) {
+
+      $rootScope.selectedOpportunity = elem;
 
       $uibModal.open({
         animation: false,
@@ -118,6 +125,6 @@
         size: 'lg',
         show: false
       });
-    };
+    }
   }
 })();

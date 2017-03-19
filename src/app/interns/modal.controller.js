@@ -6,10 +6,10 @@
     .controller('ModalController', ModalController);
 
   /** @ngInject */
-  function ModalController($uibModalInstance) {
-  
+  function ModalController($uibModalInstance, $rootScope) {
 
     var vm = this;
+    vm.item = $rootScope.selectedOpportunity;
 
     vm.ok = function () {
       $uibModalInstance.close();
