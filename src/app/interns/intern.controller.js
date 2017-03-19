@@ -19,6 +19,8 @@
     vm.resetInput = resetInput;
     vm.filter = "";
 
+    vm.rows = [];
+
     activate();
 
     function activate() {
@@ -26,6 +28,8 @@
         originalData = json;
         currentData = originalData;
         vm.inputChange();
+
+        vm.rows = chunk(originalData, ["city", "name", "subfiled"]);
       });
     }
 
@@ -79,25 +83,25 @@
 
     }
 
-    var data = [{
-      "name": "City"
-    }, {
-      "name": "Pay"
-    }, {
-      "name": "Field"
-    }, {
-      "name": "Requirements"
-    }];
+    function chunk(data, fields) {
 
-    function chunk(arr, size) {
-      var newArr = [];
-      for (var i = 0; i < arr.length; i += size) {
-        newArr.push(arr.slice(i, i + size));
+      var newArr = {};
+
+      for (var index = 0; index < fields.length; index++) {
+        for (var i = 0; i < data.length; i++) {
+
+          if (newArr[fields[index]] === undefined) {
+            newArr[fields[index]] = [];
+          }
+
+          if (newArr[fields[index]].indexOf(data[i][fields[index]]) < 0) {
+            newArr[fields[index]].push(data[i][fields[index]]);
+          }
+        }
       }
+
       return newArr;
     }
-
-    vm.rows = chunk(data, 3);
 
 
     vm.open = function () {

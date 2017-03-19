@@ -10,27 +10,22 @@
 <form action="">
   <div class="row explore">
 
-    <div class="col-sm-5 col-xs-12">
+    <div class="col-sm-12 col-xs-12">
 
       <h3 class="header">Explore</h3>
 
       <div class="input-group input-addon">
-        <input class="form-control" type="text" ng-change="interns.inputChange()" ng-model="ctrl.filter"/>
-        <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+        <span ng-repeat="row in interns.rows">
+          <button type="button" class="btn btn-default" ng-repeat="category in row">
+            {{ category }}
+          </button>
+        </span>
       </div>
 
       <div>
         <button ng-click="interns.resetInput()" class="btn btn-success">Reset</button>
       </div>
 
-    </div>
-
-    <div class="col-sm-3 pull-right">
-      <div ng-repeat="row in rows">
-        <div ng-repeat="category in row" class="category-chooser">
-          <button type="button" class="btn btn-default">{{ category.name }}</button>
-        </div>
-      </div>
     </div>
 
   </div>
