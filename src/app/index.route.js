@@ -19,6 +19,18 @@
         templateUrl: 'app/interns/intern.html',
         controller: 'InternController',
         controllerAs: 'interns'
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'app/login/login.html',
+        controller: 'LoginController',
+        controllerAs: 'ctrl'
+      })
+      .state('myAccount', {
+        url: '/myAccount',
+        templateUrl: 'app/myaccount/myaccount.html',
+        controller: 'MyAccountController',
+        controllerAs: 'ctrl'
       });
 
 

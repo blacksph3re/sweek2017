@@ -35,8 +35,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav nav">
                         <li><a ui-sref="home">Home</a></li>
-                        <li><a ui-sref="interns">Interns</a></li>
-                        <li><a ui-sref="bubbles">Bubbles</a></li>
+                        <li><a ui-sref="login" ng-show="!loggedIn">Login</a></li>
+                        <li><a ui-sref="myAccount" ng-show="loggedIn">My Account</a></li>
+                        <li><a ui-sref="interns" ng-show="loggedIn">Interns</a></li>
                     </ul>
                 </div>
             </div>
