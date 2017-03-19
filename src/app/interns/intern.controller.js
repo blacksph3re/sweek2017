@@ -42,8 +42,9 @@
 
       $('.sort-field').removeClass('active');
 
-      $('.sort-' + sort[0]).addClass('active');
-      $('.sort-' + sort[1]).addClass('active');
+      for (var i = 0; i < sort.length; i++) {
+        $('.sort-' + sort[i]).addClass('active');
+      }
     }
 
     function resetInput() {
@@ -54,32 +55,32 @@
       inputChange();
     }
 
-    function drawChart(data, filters) {
+    function drawChart(data, sortFields) {
 
       if (visualization) {
 
-        visualization.data(data).id(filters).draw();
+        console.debug(sortFields);
+        visualization.data(data).id(sortFields).draw();
 
       } else {
 
         visualization = d3plus.viz()
-          .container(".bubbles")     // container DIV to hold the visualization
-          .data(data)        // data to use with the visualization
-          .type("bubbles")          // visualization type
-          .id(filters)              // nesting keys
-          .depth(1)                 // 0-based depth
-          //.size("value")          // key name to size bubbles
-          .color(filters[0])          // color by each group
+          .container(".bubbles")      // container DIV to hold the visualization
+          .data(data)                 // data to use with the visualization
+          .type("bubbles")            // visualization type
+          .id(sortFields)             // nesting keys
+          .depth(1)                   // 0-based depth
+          //.size("value")            // key name to size bubbles
+          .color(sortFields[0])       // color by each group
           .mouse({
-            "move": false,                        // key will also take custom function
+            "move": false,            // key will also take custom function
             "click": chartClick
           })
-          .draw();                  // finally, draw the visualization!
+          .draw();                    // finally, draw the visualization!
       }
     }
 
     function sortInput(field) {
-      $('.sort-' + field).addClass('active');
 
       if (sort.length == 2) {
         sort = [field];
