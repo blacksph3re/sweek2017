@@ -14,7 +14,6 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
 
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
 
-
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -27,6 +26,16 @@ $icon-font-path: "../../bootstrap-sass/assets/fonts/bootstrap/";
 
   img.pull-right {
     width: 50px;
+  }
+}
+
+.navbar-brand {
+  width: 110px;
+  position: relative;
+  top: -9px;
+
+  img {
+    width: 100%;
   }
 }
 
