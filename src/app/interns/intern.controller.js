@@ -46,6 +46,16 @@
       for (var i = 0; i < sort.length; i++) {
         $('.sort-' + sort[i]).addClass('active');
       }
+
+      var oldOrder = groupsOrder.slice(0);
+      groupsOrder = sort.slice(0);
+      currentGroup = 0;
+
+      for (var i in oldOrder) {
+        if (groupsOrder.indexOf(oldOrder[i]) < 0) {
+          groupsOrder.push(oldOrder[i]);
+        }
+      }
     }
 
     function resetInput() {
