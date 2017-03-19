@@ -9,27 +9,36 @@
   function InternController($uibModal) {
 
     var vm = this;
-    var sample_data;
+    var originalData, currentData;
 
     var groupsOrder = ["city", "name", "subfiled", "title"];
     var currentGroup = 0;
     var visualization = null;
 
     vm.inputChange = inputChange;
+    vm.resetInput = resetInput;
     vm.filter = "";
 
     activate();
 
     function activate() {
       $.getJSON("data.json", function (json) {
-        sample_data = json;
+        originalData = json;
+        currentData = originalData;
         vm.inputChange();
       });
     }
 
     function inputChange() {
 
-      drawChart(sample_data, ["city", "name"]);
+      drawChart(currentData, ["city", "name"]);
+    }
+
+    function resetInput() {
+
+      currentData = originalData;
+      currentGroup = 0;
+      inputChange();
     }
 
     function drawChart(data, filters) {
@@ -62,9 +71,11 @@
       var groupValue = elem[groupIndex];
       currentGroup = groupsOrder.indexOf(groupIndex) + 1;
 
-      drawChart(sample_data.filter(function (elem) {
+      currentData = currentData.filter(function (elem) {
         return elem[groupIndex] == groupValue;
-      }), [groupsOrder[currentGroup], groupsOrder[currentGroup + 1]]);
+      });
+
+      drawChart(currentData, [groupsOrder[currentGroup], groupsOrder[currentGroup + 1]]);
 
     }
 
@@ -72,7 +83,7 @@
       "name": "City"
     }, {
       "name": "Pay"
-    },{
+    }, {
       "name": "Field"
     }, {
       "name": "Requirements"
@@ -80,8 +91,8 @@
 
     function chunk(arr, size) {
       var newArr = [];
-      for (var i=0; i<arr.length; i+=size) {
-        newArr.push(arr.slice(i, i+size));
+      for (var i = 0; i < arr.length; i += size) {
+        newArr.push(arr.slice(i, i + size));
       }
       return newArr;
     }
@@ -89,8 +100,8 @@
     vm.rows = chunk(data, 3);
 
 
-    vm.open = function() {
-      
+    vm.open = function () {
+
       $uibModal.open({
         animation: false,
         ariaLabelledBy: 'modal-title',

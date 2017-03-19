@@ -15,8 +15,12 @@
       <h3 class="header">Explore</h3>
 
       <div class="input-group input-addon">
-        <input class="form-control" type="text" ng-change="ctrl.inputChange()" ng-model="ctrl.filter"/>
+        <input class="form-control" type="text" ng-change="interns.inputChange()" ng-model="ctrl.filter"/>
         <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+      </div>
+
+      <div>
+        <button ng-click="interns.resetInput()" class="btn btn-success">Reset</button>
       </div>
 
     </div>
