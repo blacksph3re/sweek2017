@@ -24,13 +24,13 @@
         url: '/login',
         templateUrl: 'app/login/login.html',
         controller: 'LoginController',
-        controllerAs: 'ctrl'
+        controllerAs: 'login'
       })
       .state('myAccount', {
         url: '/myAccount',
         templateUrl: 'app/myaccount/myaccount.html',
         controller: 'MyAccountController',
-        controllerAs: 'ctrl'
+        controllerAs: 'myaccount'
       });
 
 
